@@ -2,6 +2,7 @@ package com.dsa.arraysandhasing;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class validSudoku {
     public static void main(String[] args) {
@@ -24,7 +25,7 @@ public class validSudoku {
                         ,{'.','6','.','.','.','.','2','8','.'}
                         ,{'.','.','.','4','1','9','.','.','5'}
                         ,{'.','.','.','.','8','.','.','7','9'}};
-        System.out.println(isValidSudoku(arr));
+        System.out.println(isValidSudokuV2(arr));
     }
 
     public static boolean isValidSudoku(char[][] board) {
@@ -81,6 +82,27 @@ public class validSudoku {
           }
 
       }
+        return true;
+    }
+    public static boolean isValidSudokuV2(char[][] board){
+
+        HashSet<String> seen = new HashSet<>();
+
+        for(int i = 0;i<9;i++){
+            for(int j = 0; j<9;j++){
+                if(board[i][j] != '.'){
+                    if(!seen.add(board[i][j] + " found in row " + i )
+                            ||!seen.add(board[i][j] + " found in col " + j )
+                            || !seen.add(board[i][j] + " found in box " + (i/3) + " - " + (j/3) ) )
+                    {
+                        return false;
+                    }
+                }
+
+            }
+        }
+
+
         return true;
     }
 }
