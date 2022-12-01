@@ -10,13 +10,12 @@ public class ValidPalindrome {
         long startTime = System.nanoTime();
         int len = s.length();
         if(len <= 1) return true;
-
         String str = s.toLowerCase();
         StringBuilder newStr = new StringBuilder();
 
         for(int i = 0 ;i <len;i++){
             char c = str.charAt(i);
-            if(Character.isLetter(c) || Character.isDigit(c)) newStr.append(c);
+            if(Character.isLetterOrDigit(c)) newStr.append(c);
         }
 
         int i = 0;
@@ -48,7 +47,7 @@ public class ValidPalindrome {
                 i++;
                 continue;
             }
-
+            //race a car
             if (!Character.isLetterOrDigit(end)) {
                 j--;
                 continue;
