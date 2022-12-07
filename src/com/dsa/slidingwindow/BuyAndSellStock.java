@@ -2,7 +2,7 @@ package com.dsa.slidingwindow;
 
 public class BuyAndSellStock {
     public static void main(String[] args) {
-        System.out.println(maxProfit2(new int[] {7,1,5,3,6,4}));
+        System.out.println(maxProfit2(new int[] {7,1,5,3,6,4,0,9}));
     }
 
     //Brute Force Approach
