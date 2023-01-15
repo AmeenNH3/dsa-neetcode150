@@ -4,8 +4,8 @@ import java.util.HashMap;
 
 public class PermutationInString {
     public static void main(String[] args) {
-        System.out.println( checkInclusion("abb","eidbbaooo"));
-        System.out.println( checkInclusion("abb","eidbboaooo"));
+
+        System.out.println( checkInclusion2("cat","attractive"));
     }
     public static boolean checkInclusion(String s1, String s2) {
 
@@ -40,5 +40,39 @@ public class PermutationInString {
 
 
         return false;
+    }
+
+    public static boolean checkInclusion2(String s1, String s2) {
+        int len1 = s1.length();
+        int len2 = s2.length();
+
+        int[] arr1 = new int[26];
+        int[] arr2 = new int[26];
+
+        for(int i = 0;i<len1;i++){
+            arr1[s1.charAt(i) - 'a']++;
+            arr2[s2.charAt(i) - 'a']++;
+        }
+
+        int windowStart = 0;
+        int windowEnd = len1;
+
+        while(windowEnd < len2){
+            if(doesMatch(arr1,arr2)) return  true;
+
+            arr2[s2.charAt(windowStart) - 'a']--;
+            arr2[s2.charAt(windowEnd) - 'a']++;
+
+            windowStart++;
+            windowEnd++;
+        }
+        return doesMatch(arr1, arr2);
+    }
+
+    public static boolean doesMatch(int[] arr1, int[] arr2) {
+        for (int i = 0; i < arr1.length; i++) {
+            if (arr1[i] != arr2[i]) return false;
+        }
+        return true;
     }
 }
