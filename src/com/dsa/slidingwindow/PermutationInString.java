@@ -5,8 +5,9 @@ import java.util.HashMap;
 public class PermutationInString {
     public static void main(String[] args) {
 
-        System.out.println( checkInclusion2("cat","attractive"));
+        System.out.println( checkInclusion3("cat","attractive"));
     }
+
     public static boolean checkInclusion(String s1, String s2) {
 
         HashMap<Character,Integer> map_s1 = new HashMap<>();
@@ -41,7 +42,6 @@ public class PermutationInString {
 
         return false;
     }
-
     public static boolean checkInclusion2(String s1, String s2) {
         int len1 = s1.length();
         int len2 = s2.length();
@@ -70,10 +70,40 @@ public class PermutationInString {
         }
         return doesMatch(arr1, arr2);
     }
-
     public static boolean doesMatch(int[] arr1, int[] arr2) {
         for (int i = 0; i < arr1.length; i++) {
             if (arr1[i] != arr2[i]) return false;
+        }
+        return true;
+    }
+    public static boolean checkInclusion3(String s1, String s2) {
+        if (s2.length() < s1.length()) return false;
+        int[] arr = new int[26];
+        //add the values to the hash array
+        for (int i = 0; i < s1.length(); i++) {
+            arr[s1.charAt(i) - 'a']++;
+        }
+        int i = 0;
+        int j = 0;
+        //point j to it's position
+        for (; j < s1.length(); j++) {
+            arr[s2.charAt(j) - 'a']--;
+        }
+        j--;
+        if (isEmpty(arr)) return true;
+        while (j < s2.length()) {
+            arr[s2.charAt(i) - 'a']++;
+            i++;
+            j++;
+            if (j < s2.length()) arr[s2.charAt(j) - 'a']--;
+            if (isEmpty(arr)) return true;
+        }
+        return isEmpty(arr);
+    }
+
+    public static boolean isEmpty(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] != 0) return false;
         }
         return true;
     }
