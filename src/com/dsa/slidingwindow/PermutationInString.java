@@ -46,6 +46,8 @@ public class PermutationInString {
         int len1 = s1.length();
         int len2 = s2.length();
 
+        if (len1 > len2) return  false;
+
         int[] arr1 = new int[26];
         int[] arr2 = new int[26];
 
