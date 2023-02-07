@@ -9,7 +9,7 @@ public class MinimumWindowSubstring {
 //        Input: s = "ADOBECODEBANC", t = "ABC"
 //        Output: "BANC"
 //        Explanation: The minimum window substring "BANC" includes 'A', 'B', and 'C' from string t.
-        minWindow("babb","baba");
+        minWindow2("ADOBECODEBANC","ABC");
     }
     public static String minWindow(String s, String t) {
         if(t.length() > s.length() ) return "";
@@ -64,6 +64,55 @@ public class MinimumWindowSubstring {
         }
         return subStr;
     }
+
+    public static String minWindow2(String s, String t) {
+        if(t.length() > s.length() ) return "";
+        HashMap<Character,Integer> map = new HashMap<>();
+
+        String subStr = s;
+
+        for (int i = 0;i<t.length();i++){
+            Character c  = t.charAt(i);
+            map.put(c,map.getOrDefault(c,0) + 1);
+        }
+
+        int left = 0;
+        int right = 0;
+
+        int matched = 0;
+
+        int minLength = s.length();
+
+        boolean result  = false;
+
+        while( right < s.length()){
+            Character c = s.charAt(right);
+            if(map.containsKey(c)){
+                map.replace(c, map.get(c) - 1);
+                if(map.get(c) == 0) matched++;
+                while(matched == map.size()){
+                    result = true;
+                    if(right - left + 1 < minLength){
+                        minLength = right - left + 1;
+                        subStr = s.substring(left,right + 1);
+                    }
+                    Character deleteChar = s.charAt(left);
+                    if(map.containsKey(deleteChar)) {
+                        map.replace(deleteChar, map.get(deleteChar) + 1);
+                        if(map.get(deleteChar) > 0) matched--;
+                    }
+                    left++;
+                }
+            }
+            right++;
+        }
+        if(!result){
+            return "";
+        }
+        return subStr;
+    }
+
+
 
     private static Boolean isZero(HashMap<Character,Integer> map){
         for(Map.Entry<Character,Integer> en: map.entrySet()){
