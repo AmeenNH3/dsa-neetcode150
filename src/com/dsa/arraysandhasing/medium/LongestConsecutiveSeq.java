@@ -1,7 +1,6 @@
-package com.dsa.arraysandhasing;
+package com.dsa.arraysandhasing.medium;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class LongestConsecutiveSeq {
     public static void main(String[] args) {

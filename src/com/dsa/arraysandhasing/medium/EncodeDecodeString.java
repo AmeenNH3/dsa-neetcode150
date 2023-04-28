@@ -1,4 +1,4 @@
-package com.dsa.arraysandhasing;
+package com.dsa.arraysandhasing.medium;
 
 import java.util.ArrayList;
 import java.util.Arrays;

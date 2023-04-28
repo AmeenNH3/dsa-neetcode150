@@ -1,4 +1,4 @@
-package com.dsa.arraysandhasing;
+package com.dsa.arraysandhasing.medium;
 
 public class ProductExceptSelf {
     public static void main(String[] args) {

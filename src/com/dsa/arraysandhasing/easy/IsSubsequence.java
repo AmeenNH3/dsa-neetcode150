@@ -1,4 +1,4 @@
-package com.dsa.arraysandhasing;
+package com.dsa.arraysandhasing.easy;
 
 public class IsSubsequence {
     public static void main(String[] args) {
